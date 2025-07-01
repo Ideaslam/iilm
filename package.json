@@ -1,0 +1,36 @@
+{
+  "name": "iilm-tech-lab",
+  "version": "1.0.0",
+  "description": "IILM Tech Lab - Where Faith Meets Innovation",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -o",
+    "build": "echo 'Static site - no build required'",
+    "deploy": "firebase deploy",
+    "serve": "firebase serve",
+    "init-firebase": "firebase init hosting"
+  },
+  "keywords": [
+    "iilm",
+    "tech-lab",
+    "islam",
+    "science",
+    "technology",
+    "arabic",
+    "website",
+    "responsive"
+  ],
+  "author": "IILM Tech Lab",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iilm-tech-lab/website.git"
+  },
+  "homepage": "https://iilm-tech-lab.web.app",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
