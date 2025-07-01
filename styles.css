@@ -961,6 +961,10 @@ body.english .project-tags {
         width: 200px;
         height: 200px;
     }
+
+    .hero-container{
+        margin-top: 25px;;
+    }
 }
 
 /* Animation classes */
