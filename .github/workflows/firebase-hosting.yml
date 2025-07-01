@@ -19,7 +19,7 @@ jobs:
           node-version: '18'  # or your desired version
 
       - name: Install dependencies
-         run: npm Install
+         run: npm install
  
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
