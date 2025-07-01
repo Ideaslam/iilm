@@ -4,11 +4,13 @@ A responsive website for IILM (Islam + Science) Tech Lab featuring a gold brand 
 
 ## Features
 
+- **Bilingual Website**: Full Arabic and English versions with language switcher
 - **Responsive Design**: Optimized for all devices and screen sizes
 - **Gold Brand Identity**: Elegant golden color scheme representing excellence
-- **Arabic & English Support**: Bilingual content with proper RTL support
+- **RTL/LTR Support**: Proper text direction support for both languages
 - **Modern Animations**: Smooth scrolling and entrance animations
 - **Firebase Hosting Ready**: Configured for easy deployment
+- **Language-specific Layouts**: Optimized navigation and content flow for each language
 
 ## Tech Stack
 
@@ -21,9 +23,10 @@ A responsive website for IILM (Islam + Science) Tech Lab featuring a gold brand 
 
 ```
 iilm/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles with gold theme
-├── script.js           # JavaScript functionality
+├── index.html          # Main Arabic HTML file
+├── index-en.html       # English version
+├── styles.css          # CSS styles with gold theme & bilingual support
+├── script.js           # JavaScript functionality with language detection
 ├── firebase.json       # Firebase hosting configuration
 ├── .firebaserc         # Firebase project configuration
 └── README.md           # Project documentation

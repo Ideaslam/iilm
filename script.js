@@ -171,6 +171,81 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
+// Language Detection and Setup
+document.addEventListener('DOMContentLoaded', () => {
+    // Detect if we're on English version
+    const isEnglish = document.body.classList.contains('english');
+    
+    // Update form validation messages based on language
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Basic validation with language-specific messages
+            if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+                const message = isEnglish ? 
+                    'Please fill in all required fields' : 
+                    'يرجى ملء جميع الحقول المطلوبة';
+                showNotification(message, 'error');
+                return;
+            }
+            
+            if (!isValidEmail(formData.email)) {
+                const message = isEnglish ? 
+                    'Please enter a valid email address' : 
+                    'يرجى إدخال بريد إلكتروني صحيح';
+                showNotification(message, 'error');
+                return;
+            }
+            
+            // Success message
+            const successMessage = isEnglish ? 
+                'Your message has been sent successfully! We will contact you soon.' : 
+                'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً';
+            showNotification(successMessage, 'success');
+            contactForm.reset();
+        });
+    }
+
+    // Language-specific animations and behaviors
+    if (isEnglish) {
+        // Adjust animations for LTR layout
+        document.querySelectorAll('.slide-in-left').forEach(element => {
+            element.classList.remove('slide-in-left');
+            element.classList.add('slide-in-right');
+        });
+        
+        document.querySelectorAll('.slide-in-right').forEach(element => {
+            element.classList.remove('slide-in-right');
+            element.classList.add('slide-in-left');
+        });
+    }
+
+    // Language switcher smooth transition
+    const langBtn = document.querySelector('.lang-btn');
+    if (langBtn) {
+        langBtn.addEventListener('click', function(e) {
+            // Add a loading state
+            this.style.opacity = '0.7';
+            this.style.pointerEvents = 'none';
+            
+            // Small delay for visual feedback
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 200);
+        });
+    }
+});
+
 // Notification system
 function showNotification(message, type = 'info') {
     // Remove existing notification
@@ -179,27 +254,35 @@ function showNotification(message, type = 'info') {
         existingNotification.remove();
     }
     
+    const isEnglish = document.body.classList.contains('english');
+    
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
     
-    // Style the notification
+    // Style the notification with language-specific positioning
+    const position = isEnglish ? 'left: 20px;' : 'right: 20px;';
+    const fontFamily = isEnglish ? "'Inter', sans-serif" : "'Cairo', sans-serif";
+    const direction = isEnglish ? 'ltr' : 'rtl';
+    const transform = isEnglish ? 'translateX(-400px)' : 'translateX(400px)';
+    
     notification.style.cssText = `
         position: fixed;
         top: 100px;
-        right: 20px;
+        ${position}
         background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : '#2196F3'};
         color: white;
         padding: 15px 20px;
         border-radius: 8px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         z-index: 10000;
-        font-family: 'Cairo', sans-serif;
+        font-family: ${fontFamily};
         font-weight: 500;
         max-width: 300px;
-        transform: translateX(400px);
+        transform: ${transform};
         transition: transform 0.3s ease;
+        direction: ${direction};
     `;
     
     document.body.appendChild(notification);
@@ -211,7 +294,8 @@ function showNotification(message, type = 'info') {
     
     // Remove after 5 seconds
     setTimeout(() => {
-        notification.style.transform = 'translateX(400px)';
+        const hideTransform = isEnglish ? 'translateX(-400px)' : 'translateX(400px)';
+        notification.style.transform = hideTransform;
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.parentNode.removeChild(notification);

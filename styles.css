@@ -704,6 +704,128 @@ section {
     color: #ccc;
 }
 
+/* Language Switcher */
+.language-switcher {
+    margin-left: 1rem;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px var(--shadow);
+}
+
+.lang-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px var(--shadow);
+    background: linear-gradient(135deg, var(--secondary-gold), var(--primary-gold));
+}
+
+.lang-btn i {
+    font-size: 1rem;
+}
+
+/* English Version Styles */
+body.english {
+    direction: ltr;
+    text-align: left;
+}
+
+body.english .nav-container {
+    flex-direction: row;
+}
+
+body.english .nav-logo {
+    order: 1;
+}
+
+body.english .nav-menu {
+    order: 2;
+}
+
+body.english .hamburger {
+    order: 3;
+}
+
+body.english .language-switcher {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+body.english .hero-content {
+    text-align: left;
+}
+
+body.english .hero-title .english-text {
+    display: block;
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-green);
+}
+
+body.english .hero-title .arabic-text {
+    display: block;
+    font-size: 2rem;
+    color: var(--primary-gold);
+    font-weight: 400;
+}
+
+body.english .hero-subtitle-ar {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: var(--medium-gray);
+    font-family: 'Cairo', sans-serif;
+    font-style: italic;
+    direction: rtl;
+    text-align: right;
+}
+
+body.english .section-header {
+    text-align: center;
+}
+
+body.english .about-text {
+    text-align: left;
+}
+
+body.english .contact-details {
+    text-align: left;
+}
+
+body.english .footer-content {
+    text-align: left;
+}
+
+body.english .footer-bottom {
+    text-align: center;
+}
+
+/* Form direction for English */
+body.english .form-group input,
+body.english .form-group textarea {
+    direction: ltr;
+    text-align: left;
+}
+
+/* Stats alignment for English */
+body.english .stats {
+    justify-content: flex-start;
+}
+
+/* Project tags alignment */
+body.english .project-tags {
+    justify-content: flex-start;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hamburger {
@@ -725,6 +847,26 @@ section {
 
     .nav-menu.active {
         left: 0;
+    }
+
+    .language-switcher {
+        margin: 1rem 0 0 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    body.english .language-switcher {
+        margin: 1rem 0 0 0;
+    }
+
+    body.english .nav-menu {
+        right: -100%;
+        left: auto;
+    }
+
+    body.english .nav-menu.active {
+        right: 0;
+        left: auto;
     }
 
     .hero-container {
